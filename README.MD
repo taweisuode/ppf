@@ -1,6 +1,10 @@
 #ppf 框架目录结构：
  ![image](https://github.com/taweisuode/ppf/blob/master/Public/Image/ppf_menu.png)
 
+####ppf框架是一个基于mvc模式的框架<br>
+####有着最简单的路由分发以及mvc组件构成的框架。<br>
+####模仿来自于thinkphp 以及zendframe。以及加入了类似smarty的模版引擎。全方面实现了一个框架从路由分发。载入配置文件。mvc模式以及最后的模版引擎实现。<br>
+###简单实现原理如下：
 PHP每次接收到请求时都要初始化全部资源<br>
 处理完毕后再释放全部的资源<br>
 ppf框架接收到用户的请求后，需要一个初始化的过程<br>
