@@ -29,3 +29,6 @@ Version 1可支持的模版引擎实现功能有<br>
 ```{foreach name=$aaa}{$key}{$val}{/foreach} => <?php foreach($aaa as $key=>$val){$key $val} ?>```<br>  
 ```{php echo 111;}{/php} => <?php echo 111;?>```<br>  
 后续会进行补充添加
+
+
+please join us in QQ:556830740
