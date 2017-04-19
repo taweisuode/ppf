@@ -15,7 +15,6 @@ class Model extends Db_Table_Abstract
     }
     public function getList($sql,$query_mode="all",$debug=false)
     {
-        echo 1111;die;
         if($debug == true)
         {
             var_dump($sql);die;

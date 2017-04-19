@@ -1,12 +1,11 @@
 <?php
-/*
-*   路由分发单例类 Dispath
-*   该类是访问入口文件时实例化该类的
-*   构造函数用来指向当前url中的module controller action  并加载这些文件并实例化
-*   并且将当前的module，controller，action 写入静态变量中
-*
-*
-*/
+/**
+ *   路由分发单例类 Dispath
+ *   该类是访问入口文件时实例化该类的
+ *   构造函数用来指向当前url中的module controller action  并加载这些文件并实例化
+ *   并且将当前的module，controller，action 写入静态变量中
+ *
+ */
 class Dispath
 {
     private static $static_resource;

@@ -1,8 +1,8 @@
 <?php
-/*
-*  视图类 继承于 Template类
-*
-*/
+/**
+ *  视图类 继承于 Template类
+ *
+ */
 class View extends Template
 {
     /*

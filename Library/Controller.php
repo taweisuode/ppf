@@ -1,9 +1,9 @@
 <?php
-/*
-*   控制器基类Controller
-*   所有的控制器都继承于他
-*   构造方法中需要实例化View类，并加载所有的该module下面的model.php文件
-*/
+/**
+ *   控制器基类Controller
+ *   所有的控制器都继承于他
+ *   构造方法中需要实例化View类，并加载所有的该module下面的model.php文件
+ */
 class Controller
 {
     protected $view;

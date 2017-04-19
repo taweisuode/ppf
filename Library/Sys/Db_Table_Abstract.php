@@ -1,11 +1,11 @@
 <?php
 
-/*
-*  数据库表抽象类 Db_Table_Abstract
-*  主要是pdo_mysql的封装
-*  以及实现$select = $this->db->select()->from()->where()->orderby()->limit();这类的查询
-*
-*/
+/**
+ *  数据库表抽象类 Db_Table_Abstract
+ *  主要是pdo_mysql的封装
+ *  以及实现$select = $this->db->select()->from()->where()->orderby()->limit();这类的查询
+ *
+ */
 
 class Db_Table_Abstract
 {

@@ -1,9 +1,9 @@
 <?php
-/* 
-*  该项目入口文件
-*  加载Library中的所有文件
-*  并初始化路由分发模块
-*/
+/**
+ *  该项目入口文件
+ *  加载Library中的所有文件
+ *  并初始化路由分发模块
+ */
 error_reporting(E_ALL ^ E_NOTICE);
 $path = str_replace(DIRECTORY_SEPARATOR,'/',dirname(__FILE__));
 define("PPF_PATH",$path);

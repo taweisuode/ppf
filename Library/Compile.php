@@ -1,9 +1,9 @@
 <?php
-/*
-*  编译类  Compile 
-*  正则匹配式可拓展  可设定多个编译模版
-*  
-*/
+/**
+ *  编译类  Compile
+ *  正则匹配式可拓展  可设定多个编译模版
+ *
+ */
 class Compile
 {
     public $value = array();
