@@ -11,9 +11,11 @@ class Controller
     {
         $this->view = new View();
         //自动加载所有的model文件
-        $autoload_model_path = APPLICATION_PATH.'/'.Dispath::$current_module.'/Model';
-        $allFile = scandir($autoload_model_path);
-        array_splice($allFile,0,2);//去掉前面的 '.' 和 '..'
+        //$autoload_model_path = APPLICATION_PATH.'/'.Dispath::$current_module.'/Model';
+        //var_dump($autoload_model_path);die;
+        //var_dump($autoload_model_path);die;
+        //$allFile = scandir($autoload_model_path);
+/*        array_splice($allFile,0,2);//去掉前面的 '.' 和 '..'
         //获取文件夹的所有文件
         foreach($allFile as $key => $val)
         {   
@@ -22,7 +24,7 @@ class Controller
                 //加载Model下面的所有文件
                require_once($autoload_model_path.'/'.$val); 
             }   
-        }   
+        }*/
     }
 }
 ?>

@@ -1,26 +1,17 @@
 <?php
-    class IndexController extends Controller
-    {
-        public function indexAction()
-        {
-            echo 111;die;
-            $test = "orange";
-            $this->assign("fruit",$test);
+    class IndexController extends Controller {
+        public function indexAction() {
+            $this->view->assign("result","hello world!");
             $this->view->show();
         }
-        public function addAction()
-        {
-            $addModel = new Index_IndexModel();
-            $result = $addModel->getName('管理员');
-            $max = 4;
-            $this->view->assign("max",$max);
-            //echo "<pre>";
-            //var_dump($result);die;
-            //$test = "test";
-            //$this->view->assign('add',$test);
+        public function addAction() {
+            //$indexModel = new IndexModel();
+            //$result = $indexModel->test();
             $fruit = array("loving"=>'banana',"hating"=>'apple',"no_sense"=>'orange');
             $this->view->assign("fruit",$fruit);
+            $this->view->assign("result","hello");
             $this->view->show();
         }
+
     }
 ?>

@@ -1,9 +1,8 @@
 <html>
 <head>
-<title><?php echo $this->value['add'];?></title>
+<title><?php echo $this->value['result'];?></title>
 </head>
 <body>
-<?php echo $this->value['add'];?>
 <?php if($max == 4){ ?>
 aaa
 <?php }else if( $max == 6){ ?>

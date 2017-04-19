@@ -4,45 +4,40 @@
 *  主要是pdo_mysql的封装
 *
 */
-class Model
+class Model extends Db_Table_Abstract
 {
     protected $table_name;
     private $strDsn;
-    private $DbConnect;
-    public function __CONSTRUCT()
-    {
-        try{
-            //mssql 需要用dblib
-            // 连接数据库的字符串定义
-            $this->strDsn = "mysql:host=".$database_config['host'].";dbname=".$database_config['dbname'];
-            $this->DbConnect = new PDO($this->strDsn, $database_config['username'],$database_config['password']);
-            $this->DbConnect->query("set names ".$database_config['charset']);
-        }catch (PDOException $e) 
-        {   
-            var_dump(myql_get_last_message());die;
-        }  
+    public $db;
+    public function __CONSTRUCT($model_name = "") {
+        include APPLICATION_PATH."/Config.php";
+        $this->db = $this::Db_init();
     }
-    public function query($sql,$query_mode="all",$debug=false)
+    public function getList($sql,$query_mode="all",$debug=false)
     {
+        echo 1111;die;
         if($debug == true)
         {
             var_dump($sql);die;
         }else
         {
-            $query = $this->DbConnect->query($sql);
-            if($query)
+            try
             {
-                $query->setFetchMode(PDO::FETCH_ASSOC);
-                if($query_mode == "all")
+                //使用预处理语句来执行sql
+                $query = $this->db->query($sql);
+                if($query)
                 {
-                    $result = $query->fetchAll();
-                }else if($query_mode == "row")
-                {
-                    $result = $query->fetch();
+                    $query->setFetchMode(PDO::FETCH_ASSOC);
+                    if($query_mode == "all")
+                    {
+                        $result = $query->fetchAll();
+                    }else if($query_mode == "row")
+                    {
+                        $result = $query->fetch();
+                    }
                 }
-            }else
-            {
-                $result = null;
+            }catch(PDOException $e){
+                var_dump($e->getMessage());
             }
         }
         return $result;
@@ -54,25 +49,25 @@ class Model
             var_dump($sql);die;
         }else
         {
-            $result = $this->DbConnect->exec($sql);
+            $result = $this->db->exec($sql);
         }
         return $result;
     }
     public function beginTransaction()
     {
-        $this->DbConnect->beginTransaction();
+        $this->db->beginTransaction();
     }
     public function rollback()
     {
-        $this->DbConnect->rollback();
+        $this->db->rollback();
     }
     public function commit()
     {
-        $this->DbConnect->commit();
+        $this->db->commit();
     }
     public function destruct()
     {
-        $this->DbConnect = null;
+        $this->db = null;
     }
 }
 ?>
