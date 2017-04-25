@@ -26,5 +26,14 @@ class Controller
             }   
         }*/
     }
+    public function load($path) {
+        if(is_array($path)) {
+            foreach($path as $key => $val) {
+                $this->load($val);
+            }
+        }else {
+            require_once(PPF_PATH.'/Library/'.$path.".php");
+        }
+    }
 }
 ?>

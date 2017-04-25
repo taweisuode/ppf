@@ -1,6 +1,10 @@
 <?php
     class IndexController extends Controller {
         public function indexAction() {
+            $this->load('Common/Function');
+            $str = "hello_aaa.html";
+            daddslashes($str,1);
+            
             $this->view->assign("result","hello world!");
             $this->view->show();
         }
