@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>{$result}</title>
+</head>
+<body>
+{if $max == 4}
+aaa
+{elseif $max == 6}
+asaas
+{else}
+ccc
+{/if}
+<table>
+{foreach name=$fruit}
+<tr>
+    <td>{$key}</td><td>{$val}</td>
+</tr>
+{/foreach}
+</table>
+</body>
+</html>
