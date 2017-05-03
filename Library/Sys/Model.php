@@ -1,9 +1,10 @@
 <?php
-/*
-*  模型基类 Model
-*  主要是pdo_mysql的封装
-*
-*/
+
+/**
+ *  模型基类 Model
+ *  主要是pdo_mysql的封装
+ *
+ */
 class Model extends Db_Table_Abstract
 {
     protected $table_name;
