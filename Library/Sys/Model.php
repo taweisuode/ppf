@@ -11,7 +11,7 @@ class Model extends Db_Table_Abstract
     private $strDsn;
     public $db;
     public function __CONSTRUCT($model_name = "") {
-        include APPLICATION_PATH."/Config.php";
+        include APPLICATION_PATH."/Config/Config.php";
         $this->db = $this::Db_init();
     }
     public function getList($sql,$query_mode="all",$debug=false)

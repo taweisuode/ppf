@@ -18,7 +18,8 @@ class Db_Table_Abstract
     public $DbSqlArr = array();
 
     private function __CONSTRUCT() {
-        include APPLICATION_PATH . "/Config.php";
+        include APPLICATION_PATH . "/Config/Config.php";
+        include APPLICATION_PATH . "/Config/Database.php";
         try {
             //mssql 需要用dblib
             // 连接数据库的字符串定义
@@ -41,6 +42,7 @@ class Db_Table_Abstract
     }
 
     public function select($field = "*") {
+        $new_field = "";
         $field_arr = explode(",", $field);
         foreach ($field_arr as $key => $val) {
             $new_field .= "'" . $val . "',";
@@ -86,6 +88,7 @@ class Db_Table_Abstract
     }
 
     public function query($sql, $query_mode = "all", $debug = false) {
+        $result = array();
         if ($debug == true) {
             var_dump($sql);die;
         } else {
@@ -134,4 +137,3 @@ class Db_Table_Abstract
     }
 }
 
-?>

@@ -9,8 +9,10 @@
             $this->view->show();
         }
         public function addAction() {
-            //$indexModel = new IndexModel();
-            //$result = $indexModel->test();
+            $indexModel = new IndexModel();
+            $result = $indexModel->test();
+            echo "<pre>";
+            var_dump($result);die;
             $fruit = array("loving"=>'banana',"hating"=>'apple',"no_sense"=>'orange');
             $test = array(
                 "aaa" => array(

@@ -41,10 +41,10 @@ class Compile
         $this->compare_destpattern[] = "<?php \\1 ";
         $this->compare_destpattern[] = "?>";
     }
-    /*
-    *   基本的编译功能实现 讲视图文件通过正则匹配编译并写入到php文件中
-    *
-    */
+    /**
+     *   基本的编译功能实现 讲视图文件通过正则匹配编译并写入到php文件中
+     *
+     */
     public function compile($pre_compile_file,$dest_compile_file)
     {    
         //echo $dest_compile_file;die;
