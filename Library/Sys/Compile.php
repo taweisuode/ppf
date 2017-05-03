@@ -19,8 +19,8 @@ class Compile
         $this->compare_pattern[] = '#\{else(.*?)\}#';
         $this->compare_pattern[] = '#\{/if\}#';
         //foreach实现
-        $this->compare_pattern[] = '#\{foreach name=\\$([a-zA-Z_\x7f-\xff][a-zA-z0-9_\x7f-\xff]*[^(key)][^(val)])\}#';
-        $this->compare_pattern[] = '#\{\\$(key|val)\}#';
+        $this->compare_pattern[] = '#\{foreach name=\\$(.*?)\}#';
+        $this->compare_pattern[] = '#\{\\$(key|val).\}#';
         $this->compare_pattern[] = '#\{/foreach\}#';
         //支持原生php语言实现
         $this->compare_pattern[] = '#\{php (.*?)\}#';
@@ -34,7 +34,7 @@ class Compile
         $this->compare_destpattern[] = "<?php }else{ ?>";
         $this->compare_destpattern[] = "<?php }?>";
 
-        $this->compare_destpattern[] = "<?php foreach(\$this->value['\\1'] as \$key => \$val){?>";
+        $this->compare_destpattern[] = "<?php foreach(\$\\1 as \$key => \$val){?>";
         $this->compare_destpattern[] = '<?php echo $\\1; ?>';
         $this->compare_destpattern[] = "<?php } ?>";
 

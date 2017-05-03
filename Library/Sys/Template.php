@@ -98,6 +98,7 @@ class Template
         /**
          *  将例如assign("test","aaa") 转化成 $test = 'aaa';
          *  所以这块是有2个赋值情况  一个是$test = 'aaa' 另一个是 $this->value['test'] = 'aaa';
+         *  这里设定 可以支持多维数组传递赋值
          *  @param string $file 视图文件
          */
         foreach ($this->value as $key => $val) {

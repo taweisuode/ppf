@@ -12,7 +12,18 @@
             //$indexModel = new IndexModel();
             //$result = $indexModel->test();
             $fruit = array("loving"=>'banana',"hating"=>'apple',"no_sense"=>'orange');
+            $test = array(
+                "aaa" => array(
+                    "yes" => "no",
+                    "sad" => 'happy'
+                ),
+                "bbb" => array(
+                    "one" => "two",
+                    "three"=> "four"
+                )
+            );
             $this->view->assign("fruit",$fruit);
+            $this->view->assign("test",$test);
             $this->view->assign("result","hello");
             $this->view->show();
         }
