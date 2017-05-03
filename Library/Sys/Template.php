@@ -86,15 +86,7 @@ class Template
      *  @param $value
      */
     public function assign($key, $value) {
-        if(is_array($value)) {
-            foreach($value as $k=>$v) {
-                $newKey =  $key."['".$k."']";
-                $newValue = $v;
-                $this->assign($newKey,$newValue);
-            }
-        }else {
-            $this->value[$key] = $value;
-        }
+        $this->value[$key] = $value;
     }
 
     /**

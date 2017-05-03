@@ -12,7 +12,7 @@ class Compile
     public function __CONSTRUCT()
     {
         //简单的key value赋值
-        $this->compare_pattern[] = '#\{\\$([a-zA-Z_\x7f-\xff][a-zA-z0-9_\x7f-\xff]*[^(key)][^(val)])\}#';
+        $this->compare_pattern[] = '#\{\\$(.*?)\}#';
         //if条件语句实现
         $this->compare_pattern[] = '#\{if (.*?)\}#';
         $this->compare_pattern[] = '#\{elseif(.*?)\}#';
@@ -27,7 +27,7 @@ class Compile
         $this->compare_pattern[] = '#\{/php\}#';
 
         //以下是上面几个模版编译后的php语言实现
-        $this->compare_destpattern[] = "<?php echo \$this->value['\\1'];?>";
+        $this->compare_destpattern[] = "<?php echo $\\1;?>";
 
         $this->compare_destpattern[] = "<?php if(\\1){ ?>";
         $this->compare_destpattern[] = "<?php }else if(\\1){ ?>";
