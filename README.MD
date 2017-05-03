@@ -4,7 +4,7 @@
 - 有着最简单的路由分发以及mvc组件构成的框架。
 - 模仿来自于thinkphp 以及zendframe。以及加入了类似smarty的模版引擎。全方面实现了一个框架从路由分发。载入配置文件。mvc模式以及最后的模版引擎实现。
 
-# ppf 简单实现原理如下
+## ppf 简单实现原理如下
 
 - PHP每次接收到请求时都要初始化全部资源
 - 处理完毕后再释放全部的资源
@@ -17,28 +17,28 @@
 - 然后调用分发器把请求分发到相应的控制器，实例化这个控制器，并调用控制器中的方法来处理用户的请求。
 - 在控制器里，我们可以获取用户的输入，判断用户的请求，然后调用相应的数据模型进行数据处理，控制器得到数据后，把数据传给视图，视图根据得到的数据返回一个页面给用户，请求结束。
 
-# ppf使用流程说明
+## ppf使用流程说明
 
 > http请求－>.htaccess->index.php->载入config.php（实例化核心模块）->dispath:init()->调用相应的控制器－>view
 > 在视图类中加了自定义的模版引擎。可以自己配置属于自己的模版语言以及方法
 > 具体模版类在/Library/Template.php 以及/Library/Compile.php
 
-# ppf 目录结构
+## ppf 目录结构
 
  ![image](https://github.com/taweisuode/ppf/blob/master/Public/Image/ppf_menu.png)
 
-# ppf 框架版本更新情况
+## ppf 框架版本更新情况
 
 ### version 1
->  可支持的模版引擎实现功能有
+- 可支持的模版引擎实现功能有
 ```{$add} => <?php echo $add;?>```<br>   
 ```{if $add >0}aaa{else}bbb{/if} => <?php if($add > 0){aaa}else{bbbb} ?>```<br>  
 ```{foreach name=$aaa}{$key}{$val}{/foreach} => <?php foreach($aaa as $key=>$val){$key $val} ?>```<br>  
 ```{php echo 111;}{/php} => <?php echo 111;?>```<br>  
 ### version 1.2
-> 修改了结构展现形式，新增了Library/Common目录，里面存放公用的方法函数
-> 完善了模版引擎功能，新增了多维数组赋值以及多维数组循环功能(具体代码可以参考Application/Test/Controller/IndexController.php以及Test/View/Index/add.html)
+- 修改了结构展现形式，新增了Library/Common目录，里面存放公用的方法函数
+- 完善了模版引擎功能，新增了多维数组赋值以及多维数组循环功能(具体代码可以参考Application/Test/Controller/IndexController.php以及Test/View/Index/add.html)
 
-# 作者联系方式
+## 作者联系方式
 
 QQ:556830740
