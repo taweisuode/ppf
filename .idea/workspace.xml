@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fa95641-8213-4568-866b-34278b04f2a8" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/Sys/Compile.php" afterPath="$PROJECT_DIR$/Library/Sys/Compile.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/Sys/Template.php" afterPath="$PROJECT_DIR$/Library/Sys/Template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ppf.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Compile.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Compile.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Library/Sys/Compile.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44542253">
-              <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+            <state vertical-scroll-proportion="-16.166666">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Template.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Template.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Library/Sys/Template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="10.083333">
-              <caret line="104" column="9" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.60387325">
+              <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
               <folding>
                 <element signature="e#7#125#0#PHP" expanded="true" />
               </folding>
@@ -156,8 +154,8 @@
         <option value="$PROJECT_DIR$/Application/Test/Controller/IndexController.php" />
         <option value="$PROJECT_DIR$/Cache/Index/d2f9d9821dba3cafa6351f1e7086fa56.php" />
         <option value="$PROJECT_DIR$/Library/Sys/Compile.php" />
-        <option value="$PROJECT_DIR$/Library/Sys/Template.php" />
         <option value="$PROJECT_DIR$/Application/Test/View/Index/index.html" />
+        <option value="$PROJECT_DIR$/Library/Sys/Template.php" />
       </list>
     </option>
   </component>
@@ -841,21 +839,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Library/Sys/Template.php">
+    <entry file="file://$PROJECT_DIR$/Library/Sys/Compile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.083333">
-          <caret line="104" column="9" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
-          <folding>
-            <element signature="e#7#125#0#PHP" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-16.166666">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Library/Sys/Compile.php">
+    <entry file="file://$PROJECT_DIR$/Library/Sys/Template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44542253">
-          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
-          <folding />
+        <state vertical-scroll-proportion="0.60387325">
+          <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
+          <folding>
+            <element signature="e#7#125#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
