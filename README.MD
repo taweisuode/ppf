@@ -40,13 +40,6 @@ ppf  ppf框架目录
 │  │  ├─Controller      控制器目录
 │  │  ├─Model           模型目录
 │  │  └─View            视图目录
-│  │
-│  ├─command.php        命令行工具配置文件
-│  ├─common.php         公共函数文件
-│  ├─config.php         公共配置文件
-│  ├─route.php          路由配置文件
-│  ├─tags.php           应用行为扩展定义文件
-│  └─database.php       数据库配置文件
 |
 ├─Cache                 缓存目录
 |
