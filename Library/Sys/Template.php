@@ -103,7 +103,6 @@ class Template
         foreach ($this->value as $key => $val) {
             $$key = $val;
         }
-
         $current_module = Dispath::$current_module;
         $current_controller = Dispath::$current_controller;
         $compile_file_path = PPF_PATH . '/' . $this->config['compiledir'] . $current_module . '/';
