@@ -56,7 +56,7 @@ ppf  ppf框架目录
 │  └─Js                 
 ├─Library
 │  ├─Common             框架公用的函数方法存放目录
-│     └─Function.php    框架公用的函数方法
+│  |  └─Function.php    框架公用的函数方法
 │  ├─Sys                框架系统核心
 │     ├─Compile.php     模版引擎编译类
 │     ├─Controller.php  控制器基类
@@ -68,7 +68,7 @@ ppf  ppf框架目录
 │
 ├─index.php             入口文件
 ├─.htaccess             用于apache的重写
-├─READM.MD              就是本页面
+├─README.MD              就是本页面
 ├─.gitignore            git可忽略的文件
 ```
 
