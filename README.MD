@@ -26,43 +26,48 @@
 ## ppf 目录结构
 ```
 ppf  ppf框架目录
-├─Application           应用目录
-│  ├─Config             配置文件目录
-│  │  ├─Config.php      配置路径文件
-│  │  └─Database.php    数据库配置文件
+├─Application                 应用目录
+│  ├─Config                   配置文件目录
+│  │  ├─Config.php            配置路径文件
+│  │  └─Database.php          数据库配置文件
 |
-│  ├─module_name        模块目录
-│  │  ├─Controller      控制器目录
-│  │  ├─Model           模型目录
-│  │  └─View            视图目录
+│  ├─module_name              模块目录
+│  │  ├─Controller            控制器目录
+│  │  ├─Model                 模型目录
+│  │  └─View                  视图目录
 |
-│  ├─other_module_name  其他模块目录
-│  │  ├─Controller      控制器目录
-│  │  ├─Model           模型目录
-│  │  └─View            视图目录
+│  ├─other_module_name        其他模块目录
+│  │  ├─Controller            控制器目录
+│  │  ├─Model                 模型目录
+│  │  └─View                  视图目录
 |
-├─Cache                 缓存目录
+├─Cache                       缓存目录
 |
-├─Public                css,js,image存放目录
+├─Public                      css,js,image存放目录
 │  ├─Css                
 │  ├─Image              
 │  └─Js                 
 ├─Library
-│  ├─Common             框架公用的函数方法存放目录
-│  |  └─Function.php    框架公用的函数方法
-│  ├─Sys                框架系统核心
-│     ├─Compile.php     模版引擎编译类
-│     ├─Controller.php  控制器基类
-│     ├─Db_Table_Abstract.php  数据库表抽象类
-│     ├─Dispath.php     路由分发单例类
-│     ├─Model.php       Model基类 
-│     ├─Template.php    模版引擎基类
-|     └─View.php        view视图基类
+│  ├─Common                   框架公用的函数方法存放目录
+│  |  ├─Function.php          框架公用的函数方法
+|     ├─ErrorCode.php         异常状态码类
+|     ├─ErrorCodeCN.php       异常状态码对应中文解释文件
+│  ├─Exception                框架异常处理模块
+|     └─FrameException.php    模版异常处理类
+|
+│  ├─Sys                      框架系统核心
+│     ├─Compile.php           模版引擎编译类
+│     ├─Controller.php        控制器基类
+│     ├─Db_Table_Abstract.php 数据库表抽象类
+│     ├─Dispath.php           路由分发单例类
+│     ├─Model.php             Model基类 
+│     ├─Template.php          模版引擎基类
+|     └─View.php              view视图基类
 │
-├─index.php             入口文件
-├─.htaccess             用于apache的重写
-├─README.MD              就是本页面
-├─.gitignore            git可忽略的文件
+├─index.php                   入口文件
+├─.htaccess                   用于apache的重写
+├─README.MD                   就是本页面
+├─.gitignore                  git可忽略的文件
 ```
 
 ## ppf 框架版本更新情况
