@@ -81,6 +81,7 @@ ppf  ppf框架目录
 ### version 1.2
 - 修改了结构展现形式，新增了Library/Common目录，里面存放公用的方法函数
 - 完善了模版引擎功能，新增了多维数组赋值以及多维数组循环功能(具体代码可以参考Application/Test/Controller/IndexController.php以及Test/View/Index/add.html)
+- 增加异常处理模块，可自定义，以及对应异常状态码的设定
 
 ## 作者联系方式
 
