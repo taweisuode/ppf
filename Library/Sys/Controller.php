@@ -6,9 +6,19 @@
  */
 class Controller
 {
+    private $loadException  = "FrameException";
+    private $hasException   = false;
     protected $view;
     public function __CONSTRUCT()
     {
+    
+        //默认导入TestException异常类
+        $this->load('Exception/FrameException');
+        $this->load('Common/ErrorCode');
+        //设置异常处理函数
+        restore_exception_handler();
+        set_exception_handler(array($this,"setExceptionHandler"));
+
         $this->view = new View();
         //自动加载所有的model文件
         //$autoload_model_path = APPLICATION_PATH.'/'.Dispath::$current_module.'/Model';
@@ -25,6 +35,22 @@ class Controller
                require_once($autoload_model_path.'/'.$val); 
             }   
         }*/
+    }
+    public function setExceptionHandler(Exception $e) {
+        $this->hasException = true;
+        $this->showError($e);
+    }
+    public function showError($msg, $code = -1) {
+        $code   = $msg->getCode();
+        $desc   = $msg->getMessage();
+        $return = array(
+            'e' =>  array(
+                'code'  => $code,
+                'desc'  => $desc
+            )
+        );
+        echo json_encode($return);die;
+    
     }
     public function load($path) {
         if(is_array($path)) {
