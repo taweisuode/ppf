@@ -1,12 +1,12 @@
 <?php
 /**
- *  该项目入口文件
- *  加载Library中的所有文件
- *  并初始化路由分发模块
+ * @desc 错误码集合类
+ *
  */
 class ErrorCode {
 	const test  		= 10001;
 
+    //提供获取错误的方法
 	public function get($code) {
 		include PPF_PATH."/Library/Common/ErrorCodeCN.php";
 		$codeCN = $lang_cn[$code];

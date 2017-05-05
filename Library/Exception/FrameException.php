@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @desc 框架异常类
+ * 通过 throw new FrameException($message,$code)来使用以及捕获异常
+ */
 class FrameException extends Exception {
 	private $extra_data	= null;
 
@@ -10,14 +15,6 @@ class FrameException extends Exception {
 		}
 		parent::__construct($message, $code);
 		$this->extra_data	= $extra_data;
-	}
-
-	public function append_message($msg, $separator = "; ") {
-		if (!is_string($msg)) {
-			return false;
-		}
-
-		$this->message	.= $separator . $msg;
 	}
 
 	public function getExtraData() {
