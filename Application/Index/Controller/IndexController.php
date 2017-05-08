@@ -10,7 +10,7 @@
         }
         public function addAction() {
             $indexModel = new IndexModel();
-            $result = $indexModel->test();
+            $movie_list = $indexModel->test();
 
             $fruit = array("loving"=>'banana',"hating"=>'apple',"no_sense"=>'orange');
             $test = array(
@@ -23,6 +23,7 @@
                     "three"=> "four"
                 )
             );
+            $this->view->assign("movie_list",$movie_list);
             $this->view->assign("fruit",$fruit);
             $this->view->assign("test",$test);
             $this->view->assign("result","hello");

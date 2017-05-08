@@ -45,12 +45,12 @@ class Db_Table_Abstract
         $new_field = "";
         $field_arr = explode(",", $field);
         foreach ($field_arr as $key => $val) {
-            $new_field .= "'" . $val . "',";
+            $new_field .= $val . ",";
         }
         $new_field = substr($new_field, 0, strlen($new_field) - 1);
         $sql = "select " . $new_field;
         $this->DbSqlArr['_select'] = $sql;
-        return $this->DbSqlArr;
+        return $this;
     }
 
     public function from($table_name = "") {
@@ -60,29 +60,45 @@ class Db_Table_Abstract
             die;
         } else {
             $this->DbSqlArr['_from'] = " from " . $table_name;
-            return $this->DbSqlArr;
+            return $this;
         }
     }
 
-    public function where($where_list = "") {
-        $this->DbSqlArr['_where'] = " " . $where_list;
-        return $this->DbSqlArr;
+    public function where($where_list) {
+        $where = " where ";
+        if(is_array($where_list)) {
+            foreach($where_list as $key => $val) {
+                $where .= $key ." = '" . $val ."' and ";
+            }
+            $where = substr($where,0,strlen($where)-4);
+        }else if(is_string($where_list)) {
+            $where = $where . $where_list;
+        }
+        $this->DbSqlArr['_where'] = $where;
+        return $this;
     }
 
     public function orderby($field = "id", $sort_type = "asc") {
-        $this->DbSqlArr['_orderby'] = " order by '" . $field . "' " . $sort_type;
-        return $this->DbSqlArr;
+        $this->DbSqlArr['_orderby'] = " order by " . $field  ." ". $sort_type;
+        return $this;
     }
 
     public function limit($offset = '0', $rows = "") {
         $this->DbSqlArr['_limit'] = " limit " . $offset . "," . $rows;
-        return $this->DbSqlArr;
+        return $this;
     }
 
     public function fetchAll() {
         if (!empty($this->DbSqlArr)) {
             $sql = implode("", $this->DbSqlArr);
-            $result = $this->query->$sql;
+            $result = $this->query($sql,'all',false);
+            return $result;
+        }
+    }
+    public function fetchRow() {
+        if (!empty($this->DbSqlArr)) {
+            $sql = implode("", $this->DbSqlArr);
+            $result = $this->query($sql,'row',false);
             return $result;
         }
     }
