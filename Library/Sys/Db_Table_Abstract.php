@@ -102,6 +102,7 @@ class Db_Table_Abstract
             return $result;
         }
     }
+    
 
     public function query($sql, $query_mode = "all", $debug = false) {
         $result = array();
