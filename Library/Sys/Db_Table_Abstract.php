@@ -102,6 +102,52 @@ class Db_Table_Abstract
             return $result;
         }
     }
+    public function insert($table_name,$insert_list) {
+        $insertkeysql = $insertvaluesql = $comma = '';
+        foreach ($insert_list as $insert_key => $insert_value) {
+            $insertkeysql .= $comma.'`'.$insert_key.'`';
+            $insertvaluesql .= $comma.'\''.$insert_value.'\'';
+            $comma = ', ';
+        }
+        $sql = "insert into ".$table_name."(".$insertkeysql .")values(" .$insertvaluesql. ")";
+        $returnid = $this->exec($sql);
+        if($returnid) {
+            return $this->DbConnect->lastInsertId();
+        }else {
+            return false;
+        }
+    }
+    public function delete($table_name) {
+        $sql = "";
+        if($this->DbSqlArr['_where']) {
+            $sql =  "delete from ".$table_name ." ".$this->DbSqlArr['_where'];
+        }else {
+            var_dump("delete 语句请输入where条件");die;
+        }
+        return $this->exec($sql);
+    }
+    public function update($table_name,$set_list) {
+        $set = "";
+        if(is_string($set_list)) {
+            $set = $set.$set_list." ";
+        }else if(is_array($set_list)) {
+            $tmpList = "";
+            foreach($set_list as $key => $val) {
+                $tmpList .= $key ." = '" . $val ."' , ";
+            }
+            $set = $set.$tmpList;
+            $set = substr($set,0,strlen($set)-2);
+        }
+        $this->DbSqlArr['_update'] = "update " .$table_name." set ".$set . " ";
+        $sql = "";
+        if($this->DbSqlArr['_where']) {
+            $sql =  $this->DbSqlArr['_update'] . $this->DbSqlArr['_where'];
+        }else {
+            var_dump("update 语句请输入where条件");die;
+        }
+        return $this->exec($sql);
+
+    }
 
 
     public function query($sql, $query_mode = "all", $debug = false) {
