@@ -124,11 +124,11 @@ class Template
          */
         if (!$file) {
             $current_action = Dispath::$current_action;
-            $html_file = APPLICATION_PATH . '/' . $current_module . '/view/' . $current_controller . '/' . $current_action . '.html';
+            $html_file = APPLICATION_PATH . '/' . $current_module . '/View/' . $current_controller . '/' . $current_action . '.html';
             $compile_file = $compile_file_path . md5($current_controller . '_' . $current_action) . '.php';
             $cache_file = $compile_file_path . md5($current_controller . '_' . $current_action) . $this->config['suffix_cache'];
         } else {
-            $html_file = APPLICATION_PATH . '/' . $current_module . '/view/' . $current_controller . '/' . $file . '.html';
+            $html_file = APPLICATION_PATH . '/' . $current_module . '/View/' . $current_controller . '/' . $file . '.html';
             $compile_file = $compile_file_path . md5($current_controller . '_' . $file) . '.php';
             $cache_file = $compile_file_path . md5($current_controller . '_' . $file) . $this->config['suffix_cache'];
         }
@@ -141,7 +141,7 @@ class Template
              */
             if (!is_dir($compile_file_path)) {
                 mkdir($compile_file_path);
-                chmod($compile_file_path, 0755);
+                //chmod($compile_file_path, 0755);
             }
             /**
              *   这3行代码是将Controller.php文件某一方法例如：$this->assign("add",'test')；
@@ -158,19 +158,21 @@ class Template
                  *   这时可以去看看Cache下面会有2个文件 一个是php文件 一个是htm文件 htm文件就是翻译成html语言的缓存文件
                  */
                 $message = ob_get_contents();
+                /**
                 if(file_exists($compile_file)) {
                     chmod($compile_file, 0777);
                 }
                 if(file_exists($cache_file)) {
                     chmod($cache_file, 0777);
                 }
+                */
                 $file_line = file_put_contents($cache_file, $message);
                 ob_end_flush();
             } else {
                 include $cache_file;
             }
         } else {
-            include APPLICATION_PATH . '/Index/view/Notfound/index.html';
+            include APPLICATION_PATH . '/Index/View/Notfound/index.html';
         }
     }
 }
