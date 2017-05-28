@@ -13,7 +13,7 @@ if(is_file(PPF_PATH.'/Application/Config/Database.php')) {
 }else {
     echo "请在根目录/Application/Config下创建Database.php这个文件(可以拷贝自Database_default.php文件)";die;
 }
-if(!is_dir(PPF_PATH,"/Cache")) {
+if(!is_dir(PPF_PATH."/Cache")) {
      echo "请在根目录下创建Cache这个目录";die;
 }
 $allFile = scandir(PPF_PATH.'/Library/Sys/');
