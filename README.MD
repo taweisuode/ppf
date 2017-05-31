@@ -83,7 +83,9 @@ ppf  ppf框架目录
 - 完善了模版引擎功能，新增了多维数组赋值以及多维数组循环功能(具体代码可以参考Application/Test/Controller/IndexController.php以及Test/View/Index/add.html)
 - 增加异常处理模块，可自定义，以及对应异常状态码的设定
 - 数据库链式操作（现已更新查询操作）
-
+### version 1.3
+- 新增支持的模版引擎
+```{include Public/header.html}  => <?php include "/Library/WebServer/Documents/mywebsite/Application/Index/View/Public/header.html";?>```<br>
 ## 作者联系方式
 
 QQ:556830740
