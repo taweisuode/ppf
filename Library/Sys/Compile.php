@@ -26,6 +26,9 @@ class Compile
         $this->compare_pattern[] = '#\{php (.*?)\}#';
         $this->compare_pattern[] = '#\{/php\}#';
 
+         //添加include 模版
+         $this->compare_pattern[] = '#\{include (.*?)\}#';
+
         //以下是上面几个模版编译后的php语言实现
         $this->compare_destpattern[] = "<?php echo $\\1;?>";
 
@@ -40,6 +43,8 @@ class Compile
 
         $this->compare_destpattern[] = "<?php \\1 ";
         $this->compare_destpattern[] = "?>";
+
+        $this->compare_destpattern[] = '<?php include "'.APPLICATION_PATH.'/'.Dispath::$current_module.'/View/'.'\\1";?>';
     }
     /**
      *   基本的编译功能实现 讲视图文件通过正则匹配编译并写入到php文件中
