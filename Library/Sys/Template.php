@@ -172,7 +172,7 @@ class Template
                 include $cache_file;
             }
         } else {
-            include APPLICATION_PATH . '/Index/View/Notfound/index.html';
+            include APPLICATION_PATH . '/'.$current_module.'/View/Notfound/index.html';
         }
     }
 }
