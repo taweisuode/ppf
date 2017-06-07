@@ -88,6 +88,7 @@ ppf  ppf框架目录
 - 新增支持的模版引擎
 
 ```{include Public/header.html}  => <?php include "/Library/WebServer/Documents/mywebsite/Application/Index/View/Public/header.html";?>```<br>
+```{foreach name=$aaa item=key value=val}{$key}{$val}{/foreach} => <?php foreach($aaa as $key=>$val){$key $val} ?>```<br>  
 ## 作者联系方式
 
 QQ:556830740
