@@ -13,7 +13,8 @@ class Template
 {
     protected $compile;
     public $value = array();
-    public $config = array('compiledir' => 'Cache/',         //设置编译后存放的目录
+    public $config = array(
+        'compiledir' => 'Cache/',         //设置编译后存放的目录
         'need_compile' => true,           //是否需要重新编译 true 需要重新编译 false 直接加载缓存文件
         'suffix_cache' => '.htm',         //设置编译文件的后缀
         'cache_time' => 2000              //多长时间自动更新，单位秒  
@@ -149,10 +150,15 @@ class Template
              *   最后ob_start()方法需要  include $compile_file;
              */
             if ($this->cache_strategy($php_file, $model_file_arr, $html_file, $compile_file)) {
-                ob_start();
                 $this->compile->value = $this->value;
+
+                /**
+                 * @desc 这里是先编译include部分的内容，然后在全部编译完毕
+                 */
+                ob_start();
+                $this->compile->match_include_file($html_file);
                 $this->compile->compile($html_file, $compile_file);
-                include $compile_file;
+                include "$compile_file";
                 /**
                  *   这块是得到输出缓冲区的内容并将其写入缓存文件$cache_file中，同时将编译文件跟缓存文件进行赋予755权限
                  *   这时可以去看看Cache下面会有2个文件 一个是php文件 一个是htm文件 htm文件就是翻译成html语言的缓存文件
@@ -160,19 +166,19 @@ class Template
                 $message = ob_get_contents();
                 /**
                 if(file_exists($compile_file)) {
-                    chmod($compile_file, 0777);
+                chmod($compile_file, 0777);
                 }
                 if(file_exists($cache_file)) {
-                    chmod($cache_file, 0777);
+                chmod($cache_file, 0777);
                 }
-                */
+                 */
                 $file_line = file_put_contents($cache_file, $message);
                 ob_end_flush();
             } else {
-                include $cache_file;
+                include "$cache_file";
             }
         } else {
-            include APPLICATION_PATH . '/'.$current_module.'/View/Notfound/index.html';
+            include APPLICATION_PATH . '/Index/View/Notfound/index.html';
         }
     }
 }
