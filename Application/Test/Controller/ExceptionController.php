@@ -14,7 +14,6 @@
                 throw new FrameException("", ErrorCode::test);
             }
             $this->view->assign("result","hello world!");
-            $this->view->assign('signArr',$signArr);
             $this->view->show();
         }
         public function addAction() {

@@ -11,7 +11,7 @@ class Controller
     protected $view;
     public function __CONSTRUCT()
     {
-    
+
         //默认导入TestException异常类
         $this->load('Exception/FrameException');
         $this->load('Common/ErrorCode');
@@ -20,25 +20,25 @@ class Controller
         set_exception_handler(array($this,"setExceptionHandler"));
 
         $this->view = new View();
-        //自动加载所有的model文件
-        //$autoload_model_path = APPLICATION_PATH.'/'.Dispath::$current_module.'/Model';
-        //var_dump($autoload_model_path);die;
-        //var_dump($autoload_model_path);die;
-        //$allFile = scandir($autoload_model_path);
-/*        array_splice($allFile,0,2);//去掉前面的 '.' 和 '..'
-        //获取文件夹的所有文件
-        foreach($allFile as $key => $val)
-        {   
-            if(pathinfo($val,PATHINFO_EXTENSION) == 'php')
-            {   
-                //加载Model下面的所有文件
-               require_once($autoload_model_path.'/'.$val); 
-            }   
-        }*/
     }
-    public function setExceptionHandler(Exception $e) {
+    public function setExceptionHandler(Throwable $e = null) {
         $this->hasException = true;
-        $this->showError($e);
+        $this->ShowErrorHtml($e);
+
+    }
+
+    /**
+     * @desc 显示错误信息
+     */
+    private function ShowErrorHtml(Throwable $e = null) {
+        $html = <<< HTML
+        <pre class="alert alert-danger" style="color:#a94442;background-color: #f2dede;border-color: #ebccd1;font-size: 15px">
+        <h2 class="error-danger" style="text-align:center">出错了</h2>
+        错误描述: {$e->getMessage()}<br>
+        文件位置: {$e->getFile()}第{$e->getLine()}行<br>
+        信息栈:<br><br><div style="padding-left: 72px">{$e->getTraceAsString()}</div>
+HTML;
+        echo $html;die;
     }
     public function showError($msg, $code = -1) {
         $code   = $msg->getCode();
@@ -50,7 +50,7 @@ class Controller
             )
         );
         echo json_encode($return);die;
-    
+
     }
     public function load($path) {
         if(is_array($path)) {
