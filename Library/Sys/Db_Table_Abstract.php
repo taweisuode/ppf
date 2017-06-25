@@ -96,6 +96,7 @@ class Db_Table_Abstract
                 die;
             }
             $result = $this->query($sql,'all',false);
+            $this->DbSqlArr = "";
             return $result;
         }
     }
@@ -107,6 +108,7 @@ class Db_Table_Abstract
                 die;
             }
             $result = $this->query($sql,'row',false);
+            $this->DbSqlArr = "";
             return $result;
         }
     }
