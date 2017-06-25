@@ -88,21 +88,29 @@ class Db_Table_Abstract
         return $this;
     }
 
-    public function fetchAll() {
+    public function fetchAll($debug = false) {
         if (!empty($this->DbSqlArr)) {
             $sql = implode("", $this->DbSqlArr);
+            if($debug) {
+                return $sql;
+                die;
+            }
             $result = $this->query($sql,'all',false);
             return $result;
         }
     }
-    public function fetchRow() {
+    public function fetchRow($debug = false) {
         if (!empty($this->DbSqlArr)) {
             $sql = implode("", $this->DbSqlArr);
+            if($debug) {
+                return $sql;
+                die;
+            }
             $result = $this->query($sql,'row',false);
             return $result;
         }
     }
-    public function insert($table_name,$insert_list) {
+    public function insert($table_name,$insert_list,$debug = false) {
         $insertkeysql = $insertvaluesql = $comma = '';
         foreach ($insert_list as $insert_key => $insert_value) {
             $insertkeysql .= $comma.'`'.$insert_key.'`';
@@ -110,6 +118,10 @@ class Db_Table_Abstract
             $comma = ', ';
         }
         $sql = "insert into ".$table_name."(".$insertkeysql .")values(" .$insertvaluesql. ")";
+        if($debug) {
+            return $sql;
+            die;
+        }
         $returnid = $this->exec($sql);
         if($returnid) {
             return $this->DbConnect->lastInsertId();
@@ -117,16 +129,20 @@ class Db_Table_Abstract
             return false;
         }
     }
-    public function delete($table_name) {
+    public function delete($table_name,$debug = false) {
         $sql = "";
         if($this->DbSqlArr['_where']) {
             $sql =  "delete from ".$table_name ." ".$this->DbSqlArr['_where'];
         }else {
             var_dump("delete 语句请输入where条件");die;
         }
+        if($debug) {
+            return $sql;
+            die;
+        }
         return $this->exec($sql);
     }
-    public function update($table_name,$set_list) {
+    public function update($table_name,$set_list,$debug = false) {
         $set = "";
         if(is_string($set_list)) {
             $set = $set.$set_list." ";
@@ -144,6 +160,10 @@ class Db_Table_Abstract
             $sql =  $this->DbSqlArr['_update'] . $this->DbSqlArr['_where'];
         }else {
             var_dump("update 语句请输入where条件");die;
+        }
+        if($debug) {
+            return $sql;
+            die;
         }
         return $this->exec($sql);
 
