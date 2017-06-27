@@ -102,6 +102,7 @@ class Template
          *  这里设定 可以支持多维数组传递赋值
          *  @param string $file 视图文件
          */
+        $session = Controller::$session;
         foreach ($this->value as $key => $val) {
             $$key = $val;
         }
