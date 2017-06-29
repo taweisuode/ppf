@@ -50,7 +50,7 @@ class Dispath
 
         $controller_class_name = $controller."Controller";
         if (!class_exists($controller_class_name)) {
-            echo "请检查url中的控制器是否输入正确(如果在最初安装的时候，请一定要保证 index.php 文件位于网站的根目录，最好保证vhost虚拟主机指向网站跟目录)";die;
+            echo "请检查url中的控制器是否输入正确(如果在最初安装的时候，请一定要保证 index.php 文件位于网站的根目录，最好保证vhost虚拟主机指向网站根目录)";die;
         }
         $current_controller = new $controller_class_name();
 
