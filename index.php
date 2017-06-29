@@ -5,6 +5,7 @@
  *  并初始化路由分发模块
  */
 error_reporting(E_ALL ^ E_NOTICE);
+header('Content-Type: text/html; charset=UTF-8');
 $path = str_replace(DIRECTORY_SEPARATOR,'/',dirname(__FILE__));
 define("PPF_PATH",$path);
 require_once(PPF_PATH.'/Application/Config/Config.php');
