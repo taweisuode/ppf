@@ -20,13 +20,24 @@ class Template
         'cache_time' => 2000              //多长时间自动更新，单位秒  
     );
 
-    /*
-    *   构造函数实例化编译类Compile
-    *
-    */
+    /**
+     *   构造函数实例化编译类Compile
+     *
+     */
     public function __CONSTRUCT() {
         $compile = new Compile();
         $this->compile = $compile;
+    }
+    /**
+     *   设置是否缓存(给控制器调用)
+     *
+     */
+    public function set_compile($value) {
+        if(is_bool($value)) {
+            $this->config['need_compile'] = $value;
+        }else {
+            throw new FrameException("设置缓存编译参数不正确",0);
+        }
     }
 
     public function set_config($key, $value) {
@@ -44,40 +55,23 @@ class Template
     /**
      *   缓存策略
      *   根据need_compile 是否需要重新编译
-     *   以及php文件，model文件视图文件是否经过修改
      *   以及当前时间比该文件编译时间是否大于自动更新cache_time时间
-     *   以上3点来决定是需要再次编译还是直接使用缓存文件
-     *  @param  string $php_file php文件
-     *  @param  array $model_file model文件群
+     *   以上2点来决定是需要再次编译还是直接使用缓存文件
      *  @param  string $html_file 视图文件
      *  @param  string $compile_file 编译文件
      *  @return bool   $default_status 是否需要重新编译
      */
-    public function cache_strategy($php_file, $model_file, $html_file, $compile_file) {
+    public function cache_strategy($html_file, $compile_file) {
         $default_status = false;
-        foreach ($model_file as $key => $val) {
-            if(file_exists($compile_file) && file_exists($val)) {
-                if (filemtime($compile_file) < filemtime($val)) {
-                    $default_status = true;
-                    return $default_status;
-                    die;
-                    break;
-                } else {
-                    $default_status = false;
-                }
-            }
-        }
-        //echo filemtime($html_file) . "<br>" . filemtime($compile_file) ."<br>". time();die;
         if(file_exists($compile_file)) {
             $compile_file_time = filemtime($compile_file);
         }
         $time_minus = time() - $compile_file_time;
-        if (($this->config['need_compile']) || ($time_minus > $this->config['cache_time']) || filemtime($compile_file) < filemtime($html_file) || filemtime($compile_file) < filemtime($php_file)) {
+        if (($this->config['need_compile']) || ($time_minus > $this->config['cache_time']) || filemtime($compile_file) < filemtime($html_file)) {
             $default_status = true;
         } else {
             $default_status = false;
         }
-        //var_dump($default_status);die;
         return $default_status;
     }
 
@@ -109,17 +103,6 @@ class Template
         $current_module = Dispath::$current_module;
         $current_controller = Dispath::$current_controller;
         $compile_file_path = PPF_PATH . '/' . $this->config['compiledir'] . $current_module . '/';
-        $php_file = APPLICATION_PATH . '/' . $current_module . '/Controller/' . $current_controller . 'Controller.php';
-        $model_file = array();
-        $model_file_path = APPLICATION_PATH . '/' . $current_module . '/Model/';
-        $allFile = scandir($model_file_path);
-        array_splice($allFile, 0, 2);//去掉前面的 '.' 和 '..'
-        //获取文件夹的所有文件
-        foreach ($allFile as $key => $val) {
-            if (pathinfo($val, PATHINFO_EXTENSION) == 'php') {
-                $model_file_arr[] = $model_file_path . $val;
-            }
-        }
         /**
          *   如果未指定视图名称则默认跳至该current_action的名称
          *   在这块定义视图地址，编译php文件地址，缓存htm文件地址
@@ -150,7 +133,7 @@ class Template
              *   将这个以键值对的方式传给在__CONSTRUCT实例化的Compile类中，并通过compile方法进行翻译成php文件
              *   最后ob_start()方法需要  include $compile_file;
              */
-            if ($this->cache_strategy($php_file, $model_file_arr, $html_file, $compile_file)) {
+            if ($this->cache_strategy($html_file, $compile_file)) {
                 $this->compile->value = $this->value;
 
                 /**
