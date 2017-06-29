@@ -8,6 +8,9 @@ error_reporting(E_ALL ^ E_NOTICE);
 $path = str_replace(DIRECTORY_SEPARATOR,'/',dirname(__FILE__));
 define("PPF_PATH",$path);
 require_once(PPF_PATH.'/Application/Config/Config.php');
+if(!is_dir(PPF_PATH."/Cache")) {
+    echo "请在根目录下创建Cache这个目录,并使其用户组具有写权限";die;
+}
 $allFile = scandir(PPF_PATH.'/Library/Sys/');
 array_splice($allFile,0,2);//去掉前面的 '.' 和 '..'
 //获取文件夹的所有文件
