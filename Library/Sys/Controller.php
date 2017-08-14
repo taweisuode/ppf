@@ -14,7 +14,7 @@ class Controller
     {
 
         //默认导入TestException异常类
-        $this->load('Exception/FrameException');
+        $this->load('Exception/'.$this->loadException);
         $this->load('Common/ErrorCode');
         //设置异常处理函数
         restore_exception_handler();
@@ -68,6 +68,16 @@ HTML;
         }else {
             require_once(PPF_PATH.'/Library/'.$path.".php");
         }
+    }
+    public function connectDb($type) {
+        $db = "";
+        switch ($type) {
+            case 'redis':
+                $this->load("Database/Redis_Abstract");
+                $db = Redis_Abstract::Db_init();
+                break;
+        }
+        return $db;
     }
 }
 ?>

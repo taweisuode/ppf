@@ -17,15 +17,19 @@ class Dispath
     {
         $url = $_SERVER["REQUEST_URI"];
         $module_controller_action = explode('/',$url);
+        if(in_array("ppf",$module_controller_action))
+        {
+            $key = array_search("ppf",$module_controller_action);
+        }
         //这里加入默认忽略module方式
         if($this::$ignore_module == true && count($module_controller_action) == 3) {
             $module = 'Index';
-            $controller = !empty($module_controller_action[1]) ? $module_controller_action[1] : 'Index';
-            $action     = !empty($module_controller_action[2]) ? $module_controller_action[2] : 'index';
+            $controller = !empty($module_controller_action[$key+1]) ? $module_controller_action[1] : 'Index';
+            $action     = !empty($module_controller_action[$key+2]) ? $module_controller_action[2] : 'index';
         }else {
-            $module     = !empty($module_controller_action[1]) ? $module_controller_action[1] : 'Index';
-            $controller = !empty($module_controller_action[2]) ? $module_controller_action[2] : 'Index';
-            $action     = !empty($module_controller_action[3]) ? $module_controller_action[3] : 'index';
+            $module     = !empty($module_controller_action[$key+1]) ? $module_controller_action[1] : 'Index';
+            $controller = !empty($module_controller_action[$key+2]) ? $module_controller_action[2] : 'Index';
+            $action     = !empty($module_controller_action[$key+3]) ? $module_controller_action[3] : 'index';
         }
         //对action进行过滤
         if(strpos($action,"?") !== false) {
@@ -50,7 +54,7 @@ class Dispath
 
         $controller_class_name = $controller."Controller";
         if (!class_exists($controller_class_name)) {
-            echo "请检查url中的控制器是否输入正确(如果在最初安装的时候，请一定要保证 index.php 文件位于网站的根目录，最好保证vhost虚拟主机指向网站根目录)";die;
+            echo "请检查url中的控制器是否输入正确";die;
         }
         $current_controller = new $controller_class_name();
 

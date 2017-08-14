@@ -16,13 +16,13 @@ $allFile = scandir(PPF_PATH.'/Library/Sys/');
 array_splice($allFile,0,2);//去掉前面的 '.' 和 '..'
 //获取文件夹的所有文件
 foreach($allFile as $key => $val)
-{   
+{
     if(pathinfo($val,PATHINFO_EXTENSION) == 'php')
-    {   
+    {
         //加载Library/Sys下面的所有文件
        require_once(PPF_PATH.'/Library/Sys/'.$val);
-    }   
-}   
+    }
+}
 //初始化路由分发 根据request_uri来分发到各个控制器方法
 $dispath = Dispath::init();
 ?>

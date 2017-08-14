@@ -1,36 +1,35 @@
 <?php
 
 /**
- *  数据库表抽象类 Db_Table_Abstract
- *  主要是pdo_mysql的封装
- *  以及实现$select = $this->db->select()->from()->where()->orderby()->limit();这类的查询
+ *  数据库表抽象类 Redis_Abstract
+ *  主要是redis的方法的封装
  *
  */
 
-class Db_Table_Abstract
+class Redis_Abstract
 {
     public $select;
     protected $table_name;
-    private $strDsn;
-    public $DbConnect;
+    public $redis;
     protected static $getInstance;
     private $get_query_sql = "";
 
     public $DbSqlArr = array();
 
     private function __CONSTRUCT() {
-        include APPLICATION_PATH . "/Config/Config.php";
-        include APPLICATION_PATH . "/Config/Database.php";
+        include_once APPLICATION_PATH . "/Config/Config.php";
+        include_once APPLICATION_PATH . "/Config/Redis.php";
+        include_once LIBRARY_PATH . "/Exception/PPFRedisException.php";
         try {
-            //mssql 需要用dblib
-            // 连接数据库的字符串定义
-            $this->strDsn = "mysql:host=" . $database_config['host'] . ";dbname=" . $database_config['dbname'];
-            $db = new PDO($this->strDsn, $database_config['username'], $database_config['password']);
-            $db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
-            $db->query("set names " . $database_config['charset']);
-            $this->DbConnect = $db;
-        } catch (PDOException $e) {
-            var_dump($e->getMessage());
+            $redis = new Redis();
+            $redis->connect($config['redis']['host'],$config['redis']['port']);
+            $redis->auth($config['redis']['password']);
+            $redis->set("expire_time",$config['redis']['timeout']);
+            if($redis->ping()==="+PONG") {
+                $this->redis = $redis;
+            }
+        } catch (PPFRedisException $e) {
+            var_dump($e->getMessage());die;
             die;
         }
     }
@@ -40,6 +39,21 @@ class Db_Table_Abstract
             self::$getInstance = new self();
         }
         return self::$getInstance;
+    }
+    public function set($key,$value) {
+        $this->redis->set($key,$value);
+    }
+    public function get($key) {
+        return $this->redis->get($key);
+    }
+    public function setex($key,$time,$value) {
+        $this->redis->setex($key,$time,$value);
+    }
+    public function mset($arr = array()) {
+        $this->redis->mset($arr);
+    }
+    public function mget($arr = array()) {
+        $this->redis->mget($arr);
     }
     public function get_query_sql() {
         return $this->get_query_sql;
